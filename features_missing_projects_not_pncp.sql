@@ -1,10 +1,10 @@
-USE prod01_integration;
-
 SELECT
   c.source_object_id,
   c.source_action,
-  INSTR(message_text,'reason Project') AS start_position,
-  SUBSTRING(message_text FROM INSTR(message_text,'reason Project') FOR 71) as reason_str
+  r.status,
+  SUBSTRING(message_text 
+	FROM INSTR(message_text,'reason Project') 
+	FOR (LOCATE('.',message_text,INSTR(message_text,'reason Project')) - INSTR(message_text,'reason Project')) + 1) as reason_str
 FROM catalyst c
   INNER JOIN reaction r
     ON c.ident = r.catalyst_ident
