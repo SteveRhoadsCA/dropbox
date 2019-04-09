@@ -4,3 +4,6 @@ cd ~/Metrics
 bash harness.bash
 REMOTE_CMD
 scp -i ~/.ssh/id_rsa.pem srhoads@52.203.150.102:~/Metrics/metrics.out ./
+git add metrics.out
+git commit
+git push origin
